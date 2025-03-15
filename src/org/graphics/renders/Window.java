@@ -4,6 +4,8 @@ import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GL46;
 
+import static org.lwjgl.glfw.GLFW.glfwSwapInterval;
+
 
 public class Window {
     private long window;
@@ -39,6 +41,7 @@ public class Window {
         GL.createCapabilities();
         GL46.glViewport(0, 0, width, height);
         GL46.glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+        glfwSwapInterval(1);
 
         renderer = new Renderer();
         renderer.init();

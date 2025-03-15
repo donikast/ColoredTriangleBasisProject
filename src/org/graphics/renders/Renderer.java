@@ -6,6 +6,7 @@ import org.graphics.utils.ShaderProgram;
 
 import java.nio.FloatBuffer;
 
+import org.joml.Matrix4f;
 import org.lwjgl.BufferUtils;
 
 public class Renderer {
@@ -48,6 +49,7 @@ public class Renderer {
     public void render() {
         shaderProgram.use();
         glBindVertexArray(vaoID);
+
         glDrawArrays(GL_TRIANGLES, 0, 3);
         glBindVertexArray(0);
     }

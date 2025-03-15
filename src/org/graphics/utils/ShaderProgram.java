@@ -1,6 +1,11 @@
 package org.graphics.utils;
 
+import org.joml.Matrix4f;
+import org.lwjgl.BufferUtils;
+
 import static org.lwjgl.opengl.GL20.*;
+
+import java.nio.FloatBuffer;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.charset.StandardCharsets;
@@ -51,4 +56,14 @@ public class ShaderProgram {
             throw new RuntimeException("Грешка при зареждане на шейдър: " + filePath, e);
         }
     }
+
+    public void setUniform(String name, Matrix4f matrix) {
+        int location = glGetUniformLocation(programID, name);
+        if (location != -1) {
+            FloatBuffer buffer = BufferUtils.createFloatBuffer(16);
+            matrix.get(buffer);
+            glUniformMatrix4fv(location, false, buffer);
+        }
+    }
+
 }
